@@ -3,66 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Equine Equity - Horse Ownership Portal</title>
+    <title>Equine Equity</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5dc; /* Cream color background */
+            margin: 0;
+            padding: 0;
+        }
+        h1, h2, h3 {
+            font-family: 'Georgia', serif;
+            color: #8B4513; /* Saddle Brown */
+        }
+        header {
+            background-color: #8B4513; /* Saddle Brown */
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav {
+            margin: 20px 0;
+        }
+        nav a {
+            color: #8B4513;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            margin: 20px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #8B4513;
+            color: white;
+        }
+        .calculator {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .calculator input {
+            width: 80px;
+            text-align: center;
+            margin-right: 10px;
+        }
+        .button {
+            background-color: #8B4513;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #a0522d;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to the Equine Equity Portal</h1>
+        <h1>Equine Equity</h1>
         <nav>
-            <ul>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Our Services</a></li>
-                <li><a href="#shares">Shares</a></li>
-                <li><a href="#contact">Contact Us</a></li>
-            </ul>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#calculator">Horse Shares Calculator</a>
         </nav>
     </header>
-    <main>
-        <section id="about">
-            <h2>About Equine Equity</h2>
-            <p>Equine Equity is dedicated to promoting equitable ownership and stewardship of horses.</p>
-        </section>
-        <section id="services">
-            <h2>Our Services</h2>
-            <ul>
-                <li>Horse Adoption Programs</li>
-                <li>Ownership Education Resources</li>
-                <li>Community Engagement Events</li>
-            </ul>
-        </section>
-        <section id="shares">
-            <h2>Shares</h2>
-            <p>Enter Horse Value: <input type="number" id="horseValue" placeholder="Enter value" oninput="calculateShares()"></p>
-            <ul>
-                <li>1%: $<span id="share1">0.00</span></li>
-                <li>2%: $<span id="share2">0.00</span></li>
-                <li>3%: $<span id="share3">0.00</span></li>
-                <li>5%: $<span id="share5">0.00</span></li>
-                <li>10%: $<span id="share10">0.00</span></li>
-                <li>25%: $<span id="share25">0.00</span></li>
-                <li>50%: $<span id="share50">0.00</span></li>
-            </ul>
-        </section>
-    </main>
+    <section id="about">
+        <h2>About Us</h2>
+        <p>We provide insights into the equine market...</p>
+    </section>
+    <section id="services">
+        <h2>Our Services</h2>
+        <p>Offering expert advice on horse ownership...</p>
+    </section>
+    <section id="calculator">
+        <h2>Horse Shares Calculator</h2>
+        <div class="calculator">
+            <input type="number" id="value" value="75000" />
+            <select id="sharePercent">
+                <option value="1">1%</option>
+                <option value="2">2%</option>
+                <option value="3">3%</option>
+                <option value="5">5%</option>
+                <option value="10">10%</option>
+                <option value="25">25%</option>
+                <option value="50">50%</option>
+            </select>
+            <button class="button" onclick="calculateShares()">Calculate</button>
+        </div>
+        <p id="result"></p>
+        <script>
+            function calculateShares() {
+                var value = document.getElementById('value').value;
+                var sharePercent = document.getElementById('sharePercent').value;
+                var result = (value * sharePercent / 100).toFixed(2);
+                document.getElementById('result').innerText = 'Share Value: $' + result;
+            }
+        </script>
+    </section>
     <footer>
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>Email: info@equineequity.com</p>
-            <p>Phone: (123) 456-7890</p>
-        </section>
+        <p>&copy; 2026 Equine Equity. All rights reserved.</p>
     </footer>
-    <script>
-        function calculateShares() {
-            const value = parseFloat(document.getElementById('horseValue').value);
-            if (isNaN(value)) return;
-            document.getElementById('share1').innerText = (value * 0.01).toFixed(2);
-            document.getElementById('share2').innerText = (value * 0.02).toFixed(2);
-            document.getElementById('share3').innerText = (value * 0.03).toFixed(2);
-            document.getElementById('share5').innerText = (value * 0.05).toFixed(2);
-            document.getElementById('share10').innerText = (value * 0.10).toFixed(2);
-            document.getElementById('share25').innerText = (value * 0.25).toFixed(2);
-            document.getElementById('share50').innerText = (value * 0.50).toFixed(2);
-        }
-    </script>
 </body>
 </html>
